@@ -1,0 +1,2 @@
+# mapdash
+### a Sails application
