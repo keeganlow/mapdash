@@ -7,30 +7,51 @@
  * Feel free to change none, some, or ALL of this file to fit your needs!
  */
 
-
+// TODO: single quotes everywhere
 (function (io) {
 
   // as soon as this file is loaded, connect automatically, 
   var socket = io.connect();
   if (typeof console !== 'undefined') {
-    log('Connecting to Sails.js...');
+    //log('Connecting to Sails.js...');
   }
 
   socket.on('connect', function socketConnected() {
 
+    // "subscribe" to order updates
+    // TODO: the SailsCollection should really do this itself
+    socket.get('/order');
+
+    // TODO: dev only - remove
+    $('#addRandomOrder').click(function() {
+      createRandomOrder();
+      return false;
+    });
+
+    function createRandomOrder() {
+      var long = getRandomInRange(-180, 180), lat = getRandomInRange(-90, 90);
+      var sanfrancisco = new LatLong(37.7833, -122.4167);
+
+      var newOrder = {
+        placedAtTime: new Date().getTime(),
+        origin: { latitude: sanfrancisco.lat, longitude: sanfrancisco.long },
+        destination: { latitude: lat, longitude: long }
+      };
+
+      // backbone goooo!!!
+      orders.create(newOrder, { wait: true });
+
+    }
+
     // Listen for Comet messages from Sails
     socket.on('message', function messageReceived(message) {
 
-      ///////////////////////////////////////////////////////////
-      // Replace the following with your own custom logic
-      // to run when a new message arrives from the Sails.js
-      // server.
-      ///////////////////////////////////////////////////////////
-      log('New comet message received :: ', message);
-      //////////////////////////////////////////////////////
+      if (message.model === 'order' && message.verb === 'create') {
+        //console.log('new order created', message, message.data);
+        var order = message.data;
+      }
 
     });
-
 
     ///////////////////////////////////////////////////////////
     // Here's where you'll want to add any custom logic for
@@ -38,10 +59,10 @@
     // the Sails.js server.
     ///////////////////////////////////////////////////////////
     log(
-        'Socket is now connected and globally accessible as `socket`.\n' + 
-        'e.g. to send a GET request to Sails, try \n' + 
-        '`socket.get("/", function (response) ' +
-        '{ console.log(response); })`'
+      'Socket is now connected and globally accessible as `socket`.\n' + 
+      'e.g. to send a GET request to Sails, try \n' + 
+      '`socket.get("/", function (response) ' +
+      '{ console.log(response); })`'
     );
     ///////////////////////////////////////////////////////////
 
@@ -60,12 +81,6 @@
       console.log.apply(console, arguments);
     }
   }
-  
 
-})(
 
-  // In case you're wrapping socket.io to prevent pollution of the global namespace,
-  // you can replace `window.io` with your own `io` here:
-  window.io
-
-);
+})(window.io);

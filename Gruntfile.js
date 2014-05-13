@@ -47,25 +47,32 @@ module.exports = function (grunt) {
     // linked in the proper order order
 
     // Bring in the socket.io client
-    'linker/js/socket.io.js',
+    'linker/js/libs/socket.io.js',
 
     // then beef it up with some convenience logic for talking to Sails.js
-    'linker/js/sails.io.js',
+    'linker/js/libs/sails.io.js',
 
-    'linker/js/jquery-2.1.1.min.js',
+    'linker/js/libs/jquery-2.1.1.min.js',
 
-    'linker/js/underscore.js',
+    'linker/js/libs/underscore.js',
 
-    'linker/js/backbone.js',
+    'linker/js/libs/backbone.js',
 
-    'linker/js/d3.v3.min.js',
+    'linker/js/libs/d3.v3.min.js',
 
-    'linker/js/topojson.v1.min.js',
+    'linker/js/libs/topojson.v1.min.js',
 
     // Datamaps file contains usa and world topojson data.
-    'linker/js/datamaps.all.js',
+    'linker/js/libs/datamaps.all.js',
 
-    'linker/js/datamaps.prettyarc.js',
+    'linker/js/libs/datamaps.prettyarc.js',
+
+    'linker/js/backbone.sailscollection.js',
+    'linker/js/models/*.js',
+    'linker/js/collections/*.js',
+    'linker/js/views/*.js',
+
+    'linker/js/realtime_arcs.js',
 
     // A simpler boilerplate library for getting you up and running w/ an
     // automatic listener for incoming messages from Socket.io.
