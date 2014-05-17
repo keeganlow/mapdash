@@ -1,11 +1,14 @@
-# TODO: update the heatmap when new orders created
-# TODO: removing expired orders from the orders collection should use the
-# "remove" method - this will fire remove events on the collection that
-# this view can listen for and update the maps MVC object accordingly
+# modified version of http://snazzymaps.com/style/25/blue-water
+blueWaterMapStyle = [{"featureType":"water","stylers":[{"color":"#b3d4fc"},{"visibility":"on"}]},{"featureType":"landscape","stylers":[{"color":"#f2f2f2"}]},{"featureType":"road","stylers":[{"saturation":-100},{"lightness":45}]},{"featureType":"road.highway","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"transit","stylers":[{"visibility":"off"}]},{"featureType":"poi","stylers":[{"visibility":"off"}]}]
+
 HeatMap = Backbone.View.extend
   initialize: () ->
     this.initHeatMap()
     this.listenTo(this.collection, 'add', this.addOrder)
+    this.listenTo(this.collection, 'remove', this.removeOrder)
+
+  removeOrder: (order, orders, options) ->
+    this.pointArray.removeAt(options.index)
 
   initHeatMap: () ->
     orderToOriginLatLng = (order) ->
@@ -15,12 +18,16 @@ HeatMap = Backbone.View.extend
 
     # TODO: these options should be passed in
     mapOptions =
-      zoom: 13,
+      zoom: 12,
       center: new google.maps.LatLng(37.774546, -122.433523),
-      mapTypeId: google.maps.MapTypeId.SATELLITE
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      styles: blueWaterMapStyle,
+      mapTypeControlOptions:
+        mapTypeIds: []
 
     # TODO: use this.id for selector
     this.googleMap = new google.maps.Map(document.getElementById('heat-map'), mapOptions);
+
 
     # TODO: comment about this
     # TODO: better variable name than pointArray
@@ -32,9 +39,6 @@ HeatMap = Backbone.View.extend
     heatmap.setMap(this.googleMap)
 
   addOrder: (order, orders) ->
-    #console.log 'HeatMap addOrder order',  order
-    #console.log 'HeatMap addOrder orders',  orders
     orderOrigin = order.get('origin')
-    console.log orderOrigin
     originLatLng = new google.maps.LatLng(orderOrigin.latitude, orderOrigin.longitude)
     this.pointArray.push(originLatLng)

@@ -3,24 +3,6 @@ WorldMap = Backbone.View.extend
     this.initDataMap()
     this.listenTo(this.collection, 'add', this.addOrder)
 
-  # TODO: add render method
-
-  # NOTE: moved this behavior to the collection - because there will
-  #       be multiple views that expect consistent data (including expirations)
-  # This way arcs that have faded out can be pruned from the DOM
-  #   removeOrdersOlderThan: (timestamp) ->
-  #     # when a new item is added to the collection - remove old expired items,
-  #     # then update the ui remove hidden arcs from the dom
-  #     for order, i in orders.models
-  #       if order.attributes.placedAtTime < timestamp
-  #         deleteUntilIndex = i
-  #       else
-  #         # this optimization assumes that orders are sorted from oldest to newest
-  #         break
-  #       # first arg to slice represents the first element in to keep in the result
-  #     if deleteUntilIndex > -1
-  #       orders.models = orders.models.slice(deleteUntilIndex + 1)
-
   addOrder: (order) ->
     # the datamap takes an array of arcs and handles the logic of determining
     # which ones to draw - it acts as an additional layer of view logic
@@ -39,6 +21,7 @@ WorldMap = Backbone.View.extend
       element: document.getElementById('world-map')
       projection: 'mercator'
       fills:
+        # TODO: make this hex value an applevel const
         defaultFill: '#b3d4fc'
       geographyConfig:
         hideAntarctica: true
