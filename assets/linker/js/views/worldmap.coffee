@@ -5,24 +5,26 @@ WorldMap = Backbone.View.extend
 
   # TODO: add render method
 
+  # NOTE: moved this behavior to the collection - because there will
+  #       be multiple views that expect consistent data (including expirations)
   # This way arcs that have faded out can be pruned from the DOM
-  removeOrdersOlderThan: (timestamp) ->
-    # when a new item is added to the collection - remove old expired items,
-    # then update the ui remove hidden arcs from the dom
-    for order, i in orders.models
-      if order.attributes.placedAtTime < timestamp
-        deleteUntilIndex = i
-      else
-        # this optimization assumes that orders are sorted from oldest to newest
-        break
-      # first arg to slice represents the first element in to keep in the result
-    if deleteUntilIndex > -1
-      orders.models = orders.models.slice(deleteUntilIndex + 1)
+  #   removeOrdersOlderThan: (timestamp) ->
+  #     # when a new item is added to the collection - remove old expired items,
+  #     # then update the ui remove hidden arcs from the dom
+  #     for order, i in orders.models
+  #       if order.attributes.placedAtTime < timestamp
+  #         deleteUntilIndex = i
+  #       else
+  #         # this optimization assumes that orders are sorted from oldest to newest
+  #         break
+  #       # first arg to slice represents the first element in to keep in the result
+  #     if deleteUntilIndex > -1
+  #       orders.models = orders.models.slice(deleteUntilIndex + 1)
 
   addOrder: (order) ->
     # the datamap takes an array of arcs and handles the logic of determining
     # which ones to draw - it acts as an additional layer of view logic
-    this.removeOrdersOlderThan(timeNow() - prettyArcOptions.arcFadeTime)
+    #this.removeOrdersOlderThan(timeNow() - prettyArcOptions.arcFadeTime)
     this.dataMap.prettyArc(this.collection.toJSON(), prettyArcOptions)
 
     callback = () ->
@@ -49,4 +51,4 @@ WorldMap = Backbone.View.extend
         highlightFillColor: '#b3d4fc'
         highlightBorderColor: 'rgba(2, 114, 150, 0.2)'
         highlightBorderWidth: 2
-    this.dataMap.addPlugin("prettyArc", DatamapsPlugins.handlePrettyArc)
+    this.dataMap.addPlugin('prettyArc', DatamapsPlugins.handlePrettyArc)

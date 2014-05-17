@@ -29,6 +29,7 @@ var SailsCollection = Backbone.Collection.extend({
     if (options.where) {
       where = { where: options.where };
     }
+    // TODO: test this
     this.socket.request("/" + this.sailsCollection, where, _.bind(function(models){
       this.set(models);
     }, this));

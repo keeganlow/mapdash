@@ -31,10 +31,12 @@
     function createRandomOrder() {
       var long = getRandomInRange(-180, 180), lat = getRandomInRange(-90, 90);
       var sanfrancisco = new LatLong(37.7833, -122.4167);
+      var sfLong = getRandomInRange(-122.391103, -122.511609);
+      var sfLat = getRandomInRange(37.740599, 37.793946);
 
       var newOrder = {
         placedAtTime: new Date().getTime(),
-        origin: { latitude: sanfrancisco.lat, longitude: sanfrancisco.long },
+        origin: { latitude: sfLat, longitude: sfLong },
         destination: { latitude: lat, longitude: long }
       };
 

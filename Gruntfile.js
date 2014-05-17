@@ -65,7 +65,9 @@ module.exports = function (grunt) {
     // Datamaps file contains usa and world topojson data.
     'linker/js/libs/datamaps.all.js',
 
+    // custom built datamaps pretty arc plugin
     'linker/js/libs/datamaps.prettyarc.js',
+
 
     'linker/js/backbone.sailscollection.js',
     'linker/js/models/*.js',
