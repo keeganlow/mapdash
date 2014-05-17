@@ -9,8 +9,7 @@ MapDash.views.WorldMap = Backbone.View.extend
   addOrder: (order) ->
     # the datamap takes an array of arcs and handles the logic of determining
     # which ones to draw - it acts as an additional layer of view logic
-    #this.removeOrdersOlderThan(timeNow() - prettyArcOptions.arcFadeTime)
-    this.dataMap.prettyArc(this.collection.toJSON(), prettyArcOptions)
+    this.dataMap.prettyArc(this.collection.toJSON(), MapDash.config.prettyArcOptions)
 
     countDomArcs = ->
       arcCount = d3.selectAll('path.datamaps-prettyarc').size()

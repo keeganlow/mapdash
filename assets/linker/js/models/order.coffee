@@ -17,6 +17,6 @@ MapDash.models.OrderModel = Backbone.Model.extend
     expire = -> order.collection.remove(order)
 
     # TODO: make fade time an app level const
-    this.expirationTimeout = setTimeout expire, prettyArcOptions.arcFadeTime
+    this.expirationTimeout = setTimeout expire, MapDash.config.prettyArcOptions.arcFadeTime
 
 
