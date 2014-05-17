@@ -1,5 +1,8 @@
-WorldMap = Backbone.View.extend
-  initialize: () ->
+MapDash = {} unless MapDash?
+MapDash.views = {} unless MapDash.views?
+
+MapDash.views.WorldMap = Backbone.View.extend
+  initialize: ->
     this.initDataMap()
     this.listenTo(this.collection, 'add', this.addOrder)
 
@@ -9,15 +12,14 @@ WorldMap = Backbone.View.extend
     #this.removeOrdersOlderThan(timeNow() - prettyArcOptions.arcFadeTime)
     this.dataMap.prettyArc(this.collection.toJSON(), prettyArcOptions)
 
-    callback = () ->
+    countDomArcs = ->
       arcCount = d3.selectAll('path.datamaps-prettyarc').size()
-      console.log('pre arc push - dom arc count', arcCount)
-    setTimeout callback, 700
+      console.log('current DOM arc count', arcCount);
+    setTimeout countDomArcs, 700
 
-  initDataMap: () ->
+  initDataMap: ->
     this.dataMap = new Datamap
       scope: 'world'
-      # scope: 'usa'
       element: document.getElementById('world-map')
       projection: 'mercator'
       fills:
@@ -31,7 +33,9 @@ WorldMap = Backbone.View.extend
           '<div class="hoverinfo"><strong>' + geography.properties.name + '</strong></div>'
         popupOnHover: true
         highlightOnHover: true
+        # TODO: use const
         highlightFillColor: '#b3d4fc'
         highlightBorderColor: 'rgba(2, 114, 150, 0.2)'
         highlightBorderWidth: 2
+
     this.dataMap.addPlugin('prettyArc', DatamapsPlugins.handlePrettyArc)

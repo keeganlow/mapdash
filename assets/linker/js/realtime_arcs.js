@@ -8,30 +8,15 @@ var prettyArcOptions = {
 };
 
 ///// TEMP HELPERS
-function getRandomInRange(from, to, fixed) {
-  fixed = fixed || 3;
-  return (Math.random() * (to - from) + from).toFixed(fixed) * 1;
-}
 
-function LatLong(lat, long) {
-  if (Math.abs(lat) > 90) {
-    throw "lat must be between -90 and 90";
-  }
-  if (Math.abs(long) > 180) {
-    throw "long must be between -180 and 180";
-  }
-  this.lat = lat;
-  this.long = long;
-}
+var orders = new MapDash.collections.OrderCollection;
 
-var orders = new OrderCollection;
-
-var worldMap = new WorldMap({
+var worldMap = new MapDash.views.WorldMap({
   collection: orders,
   id: 'world-map'
 });
 
-var heatMap = new HeatMap({
+var heatMap = new MapDash.views.HeatMap({
   collection: orders,
   id: 'heat-map'
 });

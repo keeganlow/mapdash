@@ -1,7 +1,10 @@
+MapDash = {} unless MapDash?
+MapDash.views = {} unless MapDash.views?
+
 # modified version of http://snazzymaps.com/style/25/blue-water
 blueWaterMapStyle = [{"featureType":"water","stylers":[{"color":"#b3d4fc"},{"visibility":"on"}]},{"featureType":"landscape","stylers":[{"color":"#f2f2f2"}]},{"featureType":"road","stylers":[{"saturation":-100},{"lightness":45}]},{"featureType":"road.highway","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"transit","stylers":[{"visibility":"off"}]},{"featureType":"poi","stylers":[{"visibility":"off"}]}]
 
-HeatMap = Backbone.View.extend
+MapDash.views.HeatMap = Backbone.View.extend
   initialize: () ->
     this.initHeatMap()
     this.listenTo(this.collection, 'add', this.addOrder)

@@ -20,30 +20,13 @@
 
     // "subscribe" to order updates
     // TODO: the SailsCollection should really do this itself
-    socket.get('/order');
+    //socket.get('/order', function(r) { console.log(r) });
 
     // TODO: dev only - remove
     $('#addRandomOrder').click(function() {
-      createRandomOrder();
+      orders.createRandomOrder();
       return false;
     });
-
-    function createRandomOrder() {
-      var long = getRandomInRange(-180, 180), lat = getRandomInRange(-90, 90);
-      var sanfrancisco = new LatLong(37.7833, -122.4167);
-      var sfLong = getRandomInRange(-122.391103, -122.511609);
-      var sfLat = getRandomInRange(37.740599, 37.793946);
-
-      var newOrder = {
-        placedAtTime: new Date().getTime(),
-        origin: { latitude: sfLat, longitude: sfLong },
-        destination: { latitude: lat, longitude: long }
-      };
-
-      // backbone goooo!!!
-      orders.create(newOrder, { wait: true });
-
-    }
 
     // Listen for Comet messages from Sails
     socket.on('message', function messageReceived(message) {

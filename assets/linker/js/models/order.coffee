@@ -1,13 +1,22 @@
-OrderModel = Backbone.Model.extend
+MapDash = {} unless MapDash?
+MapDash.models = {} unless MapDash.models?
+
+MapDash.models.OrderModel = Backbone.Model.extend
   urlRoot: '/order',
   initialize: (order) ->
     this.on('add', this.scheduleExpiration)
+    this.on('remove', this.cancelExpiration)
 
-  # in this application, the views both require 
+  # if the order is removed before its expiration timer completes, there's no
+  # need to maintain the expiration timer.
+  cancelExpiration: ->
+    if this.expirationTimeout then clearTimeout(this.expirationTimeout)
+
+  # TODO: comment explaining
   scheduleExpiration: (order) ->
-    expire = () -> order.collection.remove(order)
+    expire = -> order.collection.remove(order)
 
     # TODO: make fade time an app level const
-    setTimeout expire, prettyArcOptions.arcFadeTime
+    this.expirationTimeout = setTimeout expire, prettyArcOptions.arcFadeTime
 
 

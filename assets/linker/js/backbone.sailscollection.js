@@ -7,7 +7,17 @@ var SailsCollection = Backbone.Collection.extend({
     if (typeof this.sailsCollection === "string" && this.sailsCollection !== "") {
       // TODO: obviate this io.connect()
       this.socket = io.connect();
+
       this.socket.on('connect', _.bind(function(){
+
+        // solution to subscribe to the appropriate collection's socket.io
+        // room, without returning any data to the client by default
+        // this solution allows Sails to handle the room subscription.
+        // alternatively, we could do the subscription ourselves, but if a future
+        // version of sails changed the room naming convention, we'd be out of
+        // luck.
+        this.socket.get('/' + this.sailsCollection, { where: { id: { '<': 0 } } });
+
         this.socket.on('message', _.bind(function(msg){
           var verb = msg.verb;
           if (verb === 'create') {
