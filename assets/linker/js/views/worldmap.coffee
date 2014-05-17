@@ -17,24 +17,6 @@ MapDash.views.WorldMap = Backbone.View.extend
     setTimeout countDomArcs, 700
 
   initDataMap: ->
-    this.dataMap = new Datamap
-      scope: 'world'
-      element: document.getElementById('world-map')
-      projection: 'mercator'
-      fills:
-        # TODO: make this hex value an applevel const
-        defaultFill: '#b3d4fc'
-      geographyConfig:
-        hideAntarctica: true
-        borderWidth: 1
-        borderColor: '#FDFDFD'
-        popupTemplate: (geography, data) ->
-          '<div class="hoverinfo"><strong>' + geography.properties.name + '</strong></div>'
-        popupOnHover: true
-        highlightOnHover: true
-        # TODO: use const
-        highlightFillColor: '#b3d4fc'
-        highlightBorderColor: 'rgba(2, 114, 150, 0.2)'
-        highlightBorderWidth: 2
+    this.dataMap = new Datamap(MapDash.config.dataMapOptions)
 
     this.dataMap.addPlugin('prettyArc', DatamapsPlugins.handlePrettyArc)

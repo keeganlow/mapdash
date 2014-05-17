@@ -6,24 +6,14 @@
  *
  * Feel free to change none, some, or ALL of this file to fit your needs!
  */
-
-// TODO: single quotes everywhere
 (function (io) {
 
-  // as soon as this file is loaded, connect automatically, 
   var socket = io.connect();
-  if (typeof console !== 'undefined') {
-    //log('Connecting to Sails.js...');
-  }
 
   socket.on('connect', function socketConnected() {
 
-    // "subscribe" to order updates
-    // TODO: the SailsCollection should really do this itself
-    //socket.get('/order', function(r) { console.log(r) });
-
     // TODO: dev only - remove
-    $('#addRandomOrder').click(function() {
+    $('body').click(function() {
       orders.createRandomOrder();
       return false;
     });
@@ -32,10 +22,8 @@
     socket.on('message', function messageReceived(message) {
 
       if (message.model === 'order' && message.verb === 'create') {
-        //console.log('new order created', message, message.data);
         var order = message.data;
       }
-
     });
 
     ///////////////////////////////////////////////////////////

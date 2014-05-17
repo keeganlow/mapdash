@@ -1,6 +1,47 @@
+body {
+  background-image: url('/images/light_grey.png');
+  background-repeat: repeat;
+  font-family: 'Open Sans', sans-serif;
+  color: #333;
+}
+
+/*a css reset would be wise*/
+h1, h2 {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  padding: 25px;
+}
+
+h1 { 
+  font-style: italic;
+  font-weight: 800;
+  font-size: 3em;
+  text-shadow: 3px 3px 0px rgba(0,0,0,0.1);
+  /*display: inline-block;*/
+}
+
+h2 { 
+  /*line-height: 3em;*/
+  margin-left: 20px;
+  font-size: 1em;
+}
+
+
 .map {
   display: inline-block;
   margin: 5px;
+}
+
+#maps {
+  background: rgba(128, 128, 128, 0.2);
+  overflow: hidden;
+}
+
+.map {
+  margin: 25px;
 }
 
 #world-map {
@@ -8,12 +49,13 @@
   width: 600px;
   border: 1px solid black;
   float: right;
+  background: #b3d4fc;
 }
 #heat-map {
   height: 400px;
   width: 600px;
   border: 1px solid black;
-  /*float: right;*/
+  float: left;
   /*position: absolute;*/
   /*top: 700px;*/
 }
