@@ -26,4 +26,4 @@ MapDash.collections.OrderCollection = SailsCollection.extend
           latitude: worldwideLat,
           longitude: worldwideLong
 
-      orders.create newOrder, wait: true
+      this.create newOrder, wait: true

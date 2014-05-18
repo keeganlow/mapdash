@@ -12,6 +12,18 @@
 
   socket.on('connect', function socketConnected() {
 
+    var orders = new MapDash.collections.OrderCollection;
+
+    var worldMap = new MapDash.views.WorldMap({
+      collection: orders,
+      id: 'world-map'
+    });
+
+    var heatMap = new MapDash.views.HeatMap({
+      collection: orders,
+      id: 'heat-map'
+    });
+
     // TODO: dev only - remove
     $('.map').click(function() {
       orders.createRandomOrder();
