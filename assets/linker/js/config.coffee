@@ -7,13 +7,13 @@ MapDash.config = do ->
   # hiding it
   orderDisplayTTL = 10000
 
-  prettyBlue: prettyBlue,
-  orderDisplayTTL: orderDisplayTTL,
+  prettyBlue: prettyBlue
+  orderDisplayTTL: orderDisplayTTL
   prettyArcOptions:
-    animationSpeed: 600,
-    arcFadeTime: orderDisplayTTL,
-    arcSharpness: 1,
-    strokeColor: '#333333',
+    animationSpeed: 600
+    arcFadeTime: orderDisplayTTL
+    arcSharpness: 1
+    strokeColor: '#333333'
     strokeWidth: 2
   dataMapOptions:
     scope: 'world'
@@ -26,14 +26,14 @@ MapDash.config = do ->
       borderWidth: 1
       borderColor: '#cccccc'
       popupOnHover: false
-      highlightOnHover: true
-      highlightFillColor: prettyBlue,
+      highlightOnHover: false
+      highlightFillColor: prettyBlue
       highlightBorderColor: 'rgba(2, 114, 150, 0.2)'
       highlightBorderWidth: 2
   googleMapOptions:
-    zoom: 12,
-    center: new google.maps.LatLng(37.774546, -122.433523),
-    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    zoom: 12
+    center: new google.maps.LatLng(37.774546, -122.433523)
+    mapTypeId: google.maps.MapTypeId.ROADMAP
     mapTypeControlOptions:
       mapTypeIds: []
     # modified version of http://snazzymaps.com/style/25/blue-water
