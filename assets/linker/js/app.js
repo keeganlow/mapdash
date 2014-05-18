@@ -13,8 +13,22 @@
   socket.on('connect', function socketConnected() {
 
     // TODO: dev only - remove
-    $('body').click(function() {
+    $('.map').click(function() {
       orders.createRandomOrder();
+      return false;
+    });
+
+    $('#new-order').submit(function() {
+
+      orders.create({
+        placedAtTime: _.now(),
+        origin: {
+          address: $(this).find('#origin-address').val()
+        },
+        destination: {
+          address: $(this).find('#destination-address').val()
+        }
+      });
       return false;
     });
 
@@ -23,6 +37,7 @@
 
       if (message.model === 'order' && message.verb === 'create') {
         var order = message.data;
+        console.log('new order!', order);
       }
     });
 

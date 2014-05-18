@@ -21,7 +21,6 @@ MapDash.config = do ->
     projection: 'mercator'
     fills:
       defaultFill: '#ececec'
-      #defaultFill: prettyBlue
     geographyConfig:
       hideAntarctica: true
       borderWidth: 1
