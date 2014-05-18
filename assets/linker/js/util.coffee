@@ -12,5 +12,5 @@ MapDash.util = do ->
     this.lat = lat
     this.long = long
 
-  getRandomInRange: getRandomInRange,
+  getRandomInRange: getRandomInRange
   LatLong: LatLong

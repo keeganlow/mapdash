@@ -18,12 +18,12 @@ MapDash.collections.OrderCollection = SailsCollection.extend
       sfLat = getRandomInRange 37.740599, 37.793946
 
       newOrder =
-        placedAtTime: _.now(),
+        placedAtTime: _.now()
         origin:
-          latitude: sfLat,
+          latitude: sfLat
           longitude: sfLong
         destination:
-          latitude: worldwideLat,
+          latitude: worldwideLat
           longitude: worldwideLong
 
       this.create newOrder, wait: true
