@@ -10,7 +10,7 @@ do (io = window.io) ->
   socket.on 'connect', ->
     log 'Socket now connected.'
 
-    $('.map').click ->
+    $('#world-map').click ->
       orders.createRandomOrder()
       false
 
