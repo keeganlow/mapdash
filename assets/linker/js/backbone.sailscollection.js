@@ -6,7 +6,9 @@ var SailsCollection = Backbone.Collection.extend({
     //       duplicate all of this effort, each time sync gets called.
     if (typeof this.sailsCollection === "string" && this.sailsCollection !== "") {
       // TODO: obviate this io.connect()
+      console.log('SailsCollection pre io.connect');
       this.socket = io.connect();
+      console.log('SailsCollection post io.connect');
 
       this.socket.on('connect', _.bind(function(){
 
