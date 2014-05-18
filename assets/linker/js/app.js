@@ -19,6 +19,7 @@
     collection: orders,
     id: 'heat-map'
   });
+
   var socket = io.connect();
 
   socket.on('connect', function socketConnected() {
