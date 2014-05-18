@@ -4,12 +4,13 @@ MapDash.views = {} unless MapDash.views?
 MapDash.views.WorldMap = Backbone.View.extend
   initialize: ->
     this.initDataMap()
-    this.listenTo(this.collection, 'add', this.addOrder)
+    this.listenTo this.collection, 'add', this.updateMap
+    #this.listenTo this.collection, 'remove', this.updateMap
 
-  addOrder: (order) ->
+  updateMap: ->
     # the datamap takes an array of arcs and handles the logic of determining
     # which ones to draw - it acts as an additional layer of view logic
-    this.dataMap.prettyArc(this.collection.toJSON(), MapDash.config.prettyArcOptions)
+    this.dataMap.prettyArc this.collection.toJSON(), MapDash.config.prettyArcOptions
 
     countDomArcs = ->
       arcCount = d3.selectAll('path.datamaps-prettyarc').size()
@@ -17,6 +18,5 @@ MapDash.views.WorldMap = Backbone.View.extend
     setTimeout countDomArcs, 700
 
   initDataMap: ->
-    this.dataMap = new Datamap(MapDash.config.dataMapOptions)
-
-    this.dataMap.addPlugin('prettyArc', DatamapsPlugins.handlePrettyArc)
+    this.dataMap = new Datamap MapDash.config.dataMapOptions
+    this.dataMap.addPlugin 'prettyArc', DatamapsPlugins.handlePrettyArc

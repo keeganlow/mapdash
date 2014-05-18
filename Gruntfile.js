@@ -73,6 +73,7 @@ module.exports = function (grunt) {
 
     'linker/js/backbone.sailscollection.js',
     'linker/js/models/*.js',
+    'linker/js/sailscollection.js',
     'linker/js/collections/*.js',
     'linker/js/views/*.js',
 

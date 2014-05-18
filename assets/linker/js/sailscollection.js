@@ -1,11 +1,10 @@
 var SailsCollection = Backbone.Collection.extend({
-  sailsCollection: "",
+  sailsCollection: '',
   socket: null,
   initialize: function () {
     // NOTE: this could also be handled in the sync method, but then we would
     //       duplicate all of this effort, each time sync gets called.
     if (typeof this.sailsCollection === "string" && this.sailsCollection !== "") {
-      // TODO: obviate this io.connect()
       this.socket = io.connect();
 
       this.socket.on('connect', _.bind(function(){
@@ -40,7 +39,7 @@ var SailsCollection = Backbone.Collection.extend({
       where = { where: options.where };
     }
     // TODO: test this
-    this.socket.request("/" + this.sailsCollection, where, _.bind(function(models){
+    this.socket.request('/' + this.sailsCollection, where, _.bind(function(models){
       this.set(models);
     }, this));
   }

@@ -5,14 +5,19 @@
  * @description	:: A set of functions called `actions`.
  */
 
-module.exports = {
+var OrderController = {
+};
+
+module.exports = OrderController;
+
+//module.exports = {
 
 
   /**
    * Overrides for the settings in `config/controllers.js`
    * (specific to OrderController)
    */
-  _config: {}
+  //_config: {}
 
   
-};
+//};

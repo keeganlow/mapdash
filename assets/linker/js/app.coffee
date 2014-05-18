@@ -1,6 +1,7 @@
+
+orders   = new MapDash.collections.OrderCollection
 do (io = window.io) ->
 
-  orders   = new MapDash.collections.OrderCollection
   heatMap  = new MapDash.views.HeatMap  collection: orders, id: 'heat-map'
   worldMap = new MapDash.views.WorldMap collection: orders, id: 'world-map'
 
@@ -14,12 +15,13 @@ do (io = window.io) ->
       false
 
     $('#new-order').submit ->
-      orders.create
+      orderProperties = 
         placedAtTime: _.now()
         origin:
           address: $(this).find('#origin-address').val()
         destination:
           address: $(this).find('#destination-address').val()
+      orders.create orderProperties, wait: true
       false
 
     # Listen for Comet messages from Sails

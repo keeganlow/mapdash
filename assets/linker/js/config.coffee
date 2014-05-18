@@ -5,7 +5,7 @@ MapDash.config = do ->
 
   # in realtime mode, the number of milliseconds to display an order before
   # hiding it
-  orderDisplayTTL = 10000
+  orderDisplayTTL = 100000
 
   prettyBlue: prettyBlue
   orderDisplayTTL: orderDisplayTTL

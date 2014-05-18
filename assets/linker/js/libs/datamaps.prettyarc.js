@@ -7,6 +7,21 @@ if (typeof DatamapsPlugins === 'undefined') {
 //  2. "impact" animations when arcs trajectories finish animating
 DatamapsPlugins.handlePrettyArc = function(layer, data, options) {
 
+  // expects data to be an array of objects of the form:
+  //
+  // {
+  //   origin:      { latitude: y, longitude: x },
+  //   destination: { latitude: y, longitude: x }
+  // }
+  //
+  // if origin / destination contain additional data, d3 will have problems
+  // during the rendering steps that follow
+  data = _.map(data, function(datum) {
+    //console.log('dataummm', datum);
+    datum.origin = _.pick(datum.origin, 'longitude', 'latitude'),
+    datum.destination = _.pick(datum.destination, 'longitude', 'latitude')
+    return datum;
+  });
 
   var self = this,
   svg = this.svg;
@@ -18,6 +33,8 @@ DatamapsPlugins.handlePrettyArc = function(layer, data, options) {
   if ( typeof options === "undefined" ) {
     options = defaultOptions.arcConfig;
   }
+
+  console.log('data', data)
 
   var arcs = layer.selectAll('path.datamaps-prettyarc').data( data, JSON.stringify );
 
