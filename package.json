@@ -18,11 +18,12 @@
   "engines": {
     "node": "0.10.x"
   },
+  "test": "./node_modules/.bin/grunt test",
   "main": "app.js",
   "repository": "",
   "author": "",
   "license": "",
   "devDependencies": {
-    "mocha": "^1.19.0"
+    "grunt-contrib-jasmine": "^0.6.4"
   }
 }

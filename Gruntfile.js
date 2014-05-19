@@ -47,46 +47,46 @@ module.exports = function (grunt) {
     // linked in the proper order order
 
     // Bring in the socket.io client
-    'linker/js/libs/socket.io.js',
-
-    // then beef it up with some convenience logic for talking to Sails.js
-    'linker/js/libs/sails.io.js',
-
-    'linker/js/libs/jquery-2.1.1.min.js',
-
-    'linker/js/libs/underscore.js',
-
-    'linker/js/libs/backbone.js',
-
-    'linker/js/libs/d3.v3.min.js',
-
-    'linker/js/libs/topojson.v1.min.js',
-
-    // Datamaps file contains usa and world topojson data.
-    'linker/js/libs/datamaps.all.js',
-
-    // custom built datamaps pretty arc plugin
-    'linker/js/libs/datamaps.prettyarc.js',
-
-    'linker/js/config.js',
-    'linker/js/util.js',
-
-    'linker/js/backbone.sailscollection.js',
-    'linker/js/models/*.js',
-    'linker/js/sailscollection.js',
-    'linker/js/collections/*.js',
-    'linker/js/views/*.js',
-
-    'linker/js/realtime_arcs.js',
-
-    // A simpler boilerplate library for getting you up and running w/ an
-    // automatic listener for incoming messages from Socket.io.
-    'linker/js/app.js',
-
-    // *->    put other dependencies here   <-*
-
-    // All of the rest of your app scripts imported here
-    'linker/**/*.js'
+//    'linker/js/libs/socket.io.js',
+//
+//    // then beef it up with some convenience logic for talking to Sails.js
+//    'linker/js/libs/sails.io.js',
+//
+//    'linker/js/libs/jquery-2.1.1.min.js',
+//
+//    'linker/js/libs/underscore.js',
+//
+//    'linker/js/libs/backbone.js',
+//
+//    'linker/js/libs/d3.v3.min.js',
+//
+//    'linker/js/libs/topojson.v1.min.js',
+//
+//    // Datamaps file contains usa and world topojson data.
+//    'linker/js/libs/datamaps.all.js',
+//
+//    // custom built datamaps pretty arc plugin
+//    'linker/js/libs/datamaps.prettyarc.js',
+//
+//    'linker/js/config.js',
+//    'linker/js/util.js',
+//
+//    'linker/js/backbone.sailscollection.js',
+//    'linker/js/models/*.js',
+//    'linker/js/sailscollection.js',
+//    'linker/js/collections/*.js',
+//    'linker/js/views/*.js',
+//
+//    'linker/js/realtime_arcs.js',
+//
+//    // A simpler boilerplate library for getting you up and running w/ an
+//    // automatic listener for incoming messages from Socket.io.
+//    'linker/js/app.js',
+//
+//    // *->    put other dependencies here   <-*
+//
+//    // All of the rest of your app scripts imported here
+//    'linker/**/*.js'
   ];
 
 
@@ -104,6 +104,9 @@ module.exports = function (grunt) {
     'linker/**/*.html'
   ];
 
+  var filesToTest = [
+
+  ];
 
 
   /////////////////////////////////////////////////////////////////
@@ -436,60 +439,61 @@ module.exports = function (grunt) {
         tasks: ['compileAssets', 'linkAssets']
       }
     }
+
   });
 
   // When Sails is lifted:
   grunt.registerTask('default', [
-    'compileAssets',
-    'linkAssets',
-    'watch'
+                     'compileAssets',
+                     'linkAssets',
+                     'watch'
   ]);
 
   grunt.registerTask('compileAssets', [
-    'clean:dev',
-    'jst:dev',
-    'less:dev',
-    'copy:dev',
-    'coffee:dev'
+                     'clean:dev',
+                     'jst:dev',
+                     'less:dev',
+                     'copy:dev',
+                     'coffee:dev'
   ]);
 
   grunt.registerTask('linkAssets', [
 
-    // Update link/script/template references in `assets` index.html
-    'sails-linker:devJs',
-    'sails-linker:devStyles',
-    'sails-linker:devTpl',
-    'sails-linker:devJsJADE',
-    'sails-linker:devStylesJADE',
-    'sails-linker:devTplJADE'
+                     // Update link/script/template references in `assets` index.html
+                     'sails-linker:devJs',
+                     'sails-linker:devStyles',
+                     'sails-linker:devTpl',
+                     'sails-linker:devJsJADE',
+                     'sails-linker:devStylesJADE',
+                     'sails-linker:devTplJADE'
   ]);
 
 
   // Build the assets into a web accessible folder.
   // (handy for phone gap apps, chrome extensions, etc.)
   grunt.registerTask('build', [
-    'compileAssets',
-    'linkAssets',
-    'clean:build',
-    'copy:build'
+                     'compileAssets',
+                     'linkAssets',
+                     'clean:build',
+                     'copy:build'
   ]);
 
   // When sails is lifted in production
   grunt.registerTask('prod', [
-    'clean:dev',
-    'jst:dev',
-    'less:dev',
-    'copy:dev',
-    'coffee:dev',
-    'concat',
-    'uglify',
-    'cssmin',
-    'sails-linker:prodJs',
-    'sails-linker:prodStyles',
-    'sails-linker:devTpl',
-    'sails-linker:prodJsJADE',
-    'sails-linker:prodStylesJADE',
-    'sails-linker:devTplJADE'
+                     'clean:dev',
+                     'jst:dev',
+                     'less:dev',
+                     'copy:dev',
+                     'coffee:dev',
+                     'concat',
+                     'uglify',
+                     'cssmin',
+                     'sails-linker:prodJs',
+                     'sails-linker:prodStyles',
+                     'sails-linker:devTpl',
+                     'sails-linker:prodJsJADE',
+                     'sails-linker:prodStylesJADE',
+                     'sails-linker:devTplJADE'
   ]);
 
   // When API files are changed:

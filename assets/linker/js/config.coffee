@@ -1,6 +1,5 @@
 # Presentation config options for the MapDash app.
-MapDash = {} unless MapDash?
-MapDash.config = do ->
+define ['async!http://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=visualization'], () ->
   prettyBlue = '#b3d4fc'
 
   # in realtime mode, the number of milliseconds to display an order before
