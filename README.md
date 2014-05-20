@@ -41,6 +41,7 @@ In one potential use case, the service that handles order creation could push or
 - automated tests for frontend and Sails code
 - use a better datastore (not the current in-memory approach)
 - turn off public writes
+- serverside data validation
 - read from queue or notification service
 - force HTTPS
 - require authentication to view dashboard

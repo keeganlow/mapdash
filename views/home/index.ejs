@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <body>
+  <div id="container">
   <header>
     <h1>MapDash</h1>
     <h2>realtime geographic dashboard</h2>
@@ -11,9 +12,10 @@
   </section>
   <section>
     <form id="new-order">
-      <input id="origin-address" type="text" name="origin" value="790 arkansas st, sf ca" placeholder="pickup location"/>
-      <input id="destination-address" type="text" name="destination" value="4865 cr 48 argyle ny" placeholder="destination"/>
-      <input type="submit" value="submit" />
+      <input tabindex="1" id="origin-address" type="text" name="origin" placeholder="pickup location"/>
+      <input tabindex="2" id="destination-address" type="text" name="destination" placeholder="destination"/>
+      <input tabindex="3" type="submit" value="Create Order" />
     </form>
   </section>
+  </div>
 </body>

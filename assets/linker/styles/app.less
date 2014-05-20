@@ -1,8 +1,14 @@
 body {
+  margin: 0;
   background-image: url('/images/light_grey.png');
   background-repeat: repeat;
   font-family: 'Open Sans', sans-serif;
   color: #333;
+}
+
+#container {
+  width: 1280px;
+  margin: 0 auto;
 }
 
 /*a css reset would be wise*/
@@ -11,33 +17,28 @@ h1, h2 {
   padding: 0;
 }
 
-header {
-  padding: 25px;
-}
-
 h1 { 
   font-style: italic;
   font-weight: 800;
   font-size: 3em;
-  text-shadow: 3px 3px 0px rgba(0,0,0,0.1);
-  /*display: inline-block;*/
+  text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.1);
 }
 
 h2 { 
-  /*line-height: 3em;*/
   margin-left: 20px;
   font-size: 1em;
 }
 
-
-.map {
-  display: inline-block;
-  margin: 5px;
+header {
+  padding: 25px;
 }
 
 #maps {
   background: rgba(128, 128, 128, 0.2);
   overflow: hidden;
+  position: relative;
+  /*margin: .5em;*/
+  /*width: 1280px;*/
 }
 
 .map {
@@ -48,14 +49,39 @@ h2 {
   height: 400px;
   width: 600px;
   border: 1px solid black;
-  float: right;
   background: #b3d4fc;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
+
 #heat-map {
   height: 400px;
   width: 600px;
   border: 1px solid black;
-  float: left;
-  /*position: absolute;*/
-  /*top: 700px;*/
+}
+
+input {
+  height: 40px;
+  background: #fff;
+  border: none;
+  border-radius: 3px;
+  margin-right: 25px;
+  outline: none;
+}
+
+input[type=text] {
+  padding-left: 15px;
+  color: darkblue;
+  width: 200px;
+}
+input[type=submit] {
+  cursor: pointer;
+  width: 100px;
+}
+
+#new-order {
+  background: rgba(128, 128, 128, 0.2);
+  margin: 25px 0;
+  padding: 25px;
 }
