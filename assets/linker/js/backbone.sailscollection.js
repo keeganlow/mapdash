@@ -1,3 +1,9 @@
+// modified version of SailsCollection described here:
+// http://code.tutsplus.com/tutorials/working-with-data-in-sailsjs--net-31525
+// the major difference is that this version doesn't hit the collection's
+// index API endpoint. This prevents clients from being inundated with data
+// from the server unless the client explicity requests the data e.g., by
+// calling collection.fetch().
 define([
   'underscore',
   'backbone',
@@ -10,7 +16,7 @@ define([
     initialize: function () {
       // NOTE: this could also be handled in the sync method, but then we would
       //       duplicate all of this effort, each time sync gets called.
-      if (typeof this.sailsCollection === "string" && this.sailsCollection !== "") {
+      if (typeof this.sailsCollection === 'string' && this.sailsCollection !== "") {
         this.socket = io.connect();
 
         this.socket.on('connect', _.bind(function(){
@@ -44,7 +50,6 @@ define([
       if (options.where) {
         where = { where: options.where };
       }
-      // TODO: test this
       this.socket.request('/' + this.sailsCollection, where, _.bind(function(models){
         this.set(models);
       }, this));
