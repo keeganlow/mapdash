@@ -1,10 +1,13 @@
 // Similar to datamap's arc plugin, with some added features:
 //  1. arcs fade away after a given number of milliseconds (options.arcFadeTime)
 //  2. "impact" animations when arcs trajectories finish animating
-define(function(require) {
+define(function (require) {
   var handlePrettyArc, d3 = require('d3');
 
-  handlePrettyArc = function(layer, data, options) {
+  handlePrettyArc = function (layer, data, options) {
+    var arcs,
+        self = this,
+        svg = this.svg;
 
     // expects data to be an array of objects of the form:
     //
@@ -21,9 +24,6 @@ define(function(require) {
       return datum;
     });
 
-    var self = this,
-    svg = this.svg;
-
     if ( !data || (data && !data.slice) ) {
       throw "Datamaps Error - arcs must be an array";
     }
@@ -32,7 +32,7 @@ define(function(require) {
       options = defaultOptions.arcConfig;
     }
 
-    var arcs = layer.selectAll('path.datamaps-prettyarc').data(data, JSON.stringify);
+    arcs = layer.selectAll('path.datamaps-prettyarc').data(data, JSON.stringify);
 
     arcs
     .enter()
@@ -53,7 +53,10 @@ define(function(require) {
       return options.strokeWidth;
     })
     .attr('d', function (datum) {
-      var originXY, destXY, midXY;
+      var originXY,
+          destXY,
+          midXY;
+
       originXY = self.latLngToXY(datum.origin.latitude, datum.origin.longitude);
       destXY = self.latLngToXY(datum.destination.latitude, datum.destination.longitude);
       midXY = [ (originXY[0] + destXY[0]) / 2, (originXY[1] + destXY[1]) / 2];
@@ -67,13 +70,16 @@ define(function(require) {
          Thank you Jake Archibald, this is awesome.
 Source: http://jakearchibald.com/2013/animated-line-drawing-svg/
 */
-      var length, strokeEffect, fadeTime, fadeOut;
+      var length,
+          strokeEffect,
+          fadeTime,
+          fadeOut;
+
       length = this.getTotalLength();
       this.style.transition = this.style.WebkitTransition = 'none';
       this.style.strokeDasharray = length + ' ' + length;
       this.style.strokeDashoffset = length;
       this.getBoundingClientRect();
-      //this.style.transition = this.style.WebkitTransition = 'stroke-dashoffset ' + options.animationSpeed + 'ms ease-out';
 
       strokeEffect = this.style.WebkitTransition = 'stroke-dashoffset ' + options.animationSpeed + 'ms ease-out';
 

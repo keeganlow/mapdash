@@ -28,6 +28,8 @@ In one potential use case, the service that handles order creation could push or
 -  [sails.js](http://sailsjs.org)
 -  [backbone.js](backbonejs.org)
 -  [underscore.js](underscorejs.org)
+-  [datamaps](https://github.com/markmarkoh/datamaps)
+	- added custom plugin that supports arc fadeouts and "impact" animations
 -  [require.js](http://requirejs.org/)
 -  [require.js async plugin](https://github.com/millermedeiros/requirejs-plugins)
 	- for loading the Google Maps API asynchronously
