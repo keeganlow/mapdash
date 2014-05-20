@@ -1,4 +1,3 @@
-# TODO: move geocoder code to a "service"
 hasCoordinates = (req, res, next) ->
 
   # 1. has lat long data already

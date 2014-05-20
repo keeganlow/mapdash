@@ -12,7 +12,7 @@
     "sails-disk": "~0.9.0"
   },
   "scripts": {
-    "start": "node app.js",
+    "start": "sails lift",
     "debug": "node debug app.js"
   },
   "engines": {
