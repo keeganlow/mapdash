@@ -12,7 +12,7 @@ Without much additional work, MapDash could be extended to have a non-realtime m
 
 ### Can I see it in action?
 
-You sure can! Head over to: [map-dash.herokuapp.com](https://map-dash.herokuapp.com/)
+You sure can! Head over to: [map-dash.herokuapp.com](http://map-dash.herokuapp.com/)
 
 This version's UI includes two helpers for sending order create requests to the backend: 
 
